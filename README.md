@@ -1,3 +1,6 @@
+# bk201 blog status
+[![Build Status](https://travis-ci.org/bk201sama/academic-kickstart.svg?branch=master)](https://travis-ci.org/bk201sama/academic-kickstart)
+
 # Academic Kickstart
 
 **Academic** is a framework to help you create a beautiful website quickly. Perfect for personal, student, or academic websites. [Check out the latest demo](https://themes.gohugo.io/theme/academic/) of what you'll get in less than 10 minutes or [view the documentation](https://sourcethemes.com/academic/docs/).
