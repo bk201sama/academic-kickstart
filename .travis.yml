@@ -11,12 +11,11 @@ only:
 env:
  global:
    - GH_REF: github.com/bk201sama/bk201sama.github.io.git
-
+git:
+  submodules: true
 sudo: required
 
 install:
-  - git submodule update --init --recursive
-  - git submodule foreach --recursive git pull origin master
   - wget https://github.com/gohugoio/hugo/releases/download/v0.37.1/hugo_0.37.1_Linux-64bit.tar.gz
   - tar xzf hugo_0.37.1_Linux-64bit.tar.gz
   - chmod a+x hugo
