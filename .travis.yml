@@ -1,0 +1,33 @@
+language: go
+group: stable
+dist: trusty
+os: linux
+go:
+  - 1.10
+branches:
+only:
+      - gh-pages
+      - /.*/
+env:
+ global:
+   - GH_REF: github.com/bk201sama/bk201sama.github.io.git
+
+sudo: required
+
+install:
+  - git submodule update --init --recursive
+  - git submodule foreach --recursive git pull origin master
+  - wget https://github.com/gohugoio/hugo/releases/download/v0.37.1/hugo_0.37.1_Linux-64bit.tar.gz
+  - tar xzf hugo_0.37.1_Linux-64bit.tar.gz
+  - chmod a+x hugo
+script:
+  - ./hugo
+
+after_script:
+  - cd ./public
+  - git init
+  - git config user.name "bk201sama"
+  - git config user.email "notcn@bk201sama.eu.org"
+  - git add .
+  - git commit -m "update blog"
+  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
