@@ -13,6 +13,7 @@ env:
    - GH_REF: github.com/bk201sama/bk201sama.github.io.git
 sudo: required
 install:
+  - git submodule foreach --recursive git pull origin
   - wget https://github.com/gohugoio/hugo/releases/download/v0.37.1/hugo_0.37.1_Linux-64bit.tar.gz
   - tar xzf hugo_0.37.1_Linux-64bit.tar.gz
   - chmod a+x hugo
