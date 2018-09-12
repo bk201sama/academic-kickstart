@@ -190,11 +190,15 @@ Error message and password prompt
 
 <li>$:/state/tab/sidebar--1835078512</li>
 
+<li>$:/state/toc/index-Wiki（中文）--1980913191</li>
+
 <li>$:/status/UserName</li>
 
 <li>$:/StoryList</li>
 
 <li>$:/temp/info-plugin</li>
+
+<li>$:/temp/search</li>
 
 <li>$:/themes/tiddlywiki/snowwhite</li>
 
@@ -252,6 +256,8 @@ Error message and password prompt
 
 <li>docker打包的软件安装</li>
 
+<li>docker暴露远程接口供调用</li>
+
 <li>docker网站</li>
 
 <li>dubbo框架</li>
@@ -303,6 +309,8 @@ Error message and password prompt
 <li>IDEA远程调试</li>
 
 <li>ipv4 to ipv6</li>
+
+<li>JasperReports+iReport打印为excel表头重复问题解决</li>
 
 <li>java</li>
 
@@ -12605,10 +12613,13 @@ Error message and password prompt
 <div created="20180424103738412" creator="bk201" modified="20180424103813916" modifier="bk201" title="$:/state/tab/sidebar--1835078512">
 <pre>$:/core/ui/SideBar/Recent</pre>
 </div>
+<div created="20180718042916521" creator="bk201" modified="20180718042916521" modifier="bk201" title="$:/state/toc/index-Wiki（中文）--1980913191">
+<pre>open</pre>
+</div>
 <div created="20170214032833167" creator="b" modified="20170214032835272" modifier="bk20" title="$:/status/UserName">
 <pre>bk201</pre>
 </div>
-<div list="" title="$:/StoryList">
+<div list="Wiki（中文）" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -12624,7 +12635,7 @@ Error message and password prompt
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
-            &quot;text&quot;: &quot;file:///Users/shuwenshi/Downloads/empty.html&quot;
+            &quot;text&quot;: &quot;file:///D:/workspace/academic-kickstart/static/wiki/index.html&quot;
         },
         &quot;$:/info/url/host&quot;: {
             &quot;title&quot;: &quot;$:/info/url/host&quot;,
@@ -12644,7 +12655,7 @@ Error message and password prompt
         },
         &quot;$:/info/url/pathname&quot;: {
             &quot;title&quot;: &quot;$:/info/url/pathname&quot;,
-            &quot;text&quot;: &quot;/Users/shuwenshi/Downloads/empty.html&quot;
+            &quot;text&quot;: &quot;/D:/workspace/academic-kickstart/static/wiki/index.html&quot;
         },
         &quot;$:/info/url/search&quot;: {
             &quot;title&quot;: &quot;$:/info/url/search&quot;,
@@ -12656,6 +12667,9 @@ Error message and password prompt
         }
     }
 }</pre>
+</div>
+<div created="20180711012629695" creator="bk201" modified="20180718043122831" modifier="bk201" title="$:/temp/search">
+<pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.15">
 <pre>{
@@ -12772,7 +12786,7 @@ Error message and password prompt
 <div created="20170214033056162" creator="bk201" modified="20170214033104658" modifier="bk201" title="$:/view">
 <pre>pop</pre>
 </div>
-<div created="20160720033030450" creator="bk201sama" modified="20170228062559245" modifier="bk201" tags="linux" title="128M小内存vps参考指南">
+<div created="20160720033030450" creator="bk201sama" modified="20180718043119940" modifier="bk201" tags="linux" title="128M小内存vps参考指南">
 <pre>!!vps选购提示
 #  购买的vps主机一般会邮件你vps面板的后台地址，账户。
 # 一般我们通过ssh连接到我们的vps，账户一般是root ，具体可以看发给你的邮件。
@@ -12836,7 +12850,8 @@ server {
                 proxy_pass https://www.google.com.hk;
         }
 }`
-
+# 按照webfs(方便下载文件)
+apt-get install webfs    webfsd -p 80 -F
 # 安装ss`wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh
 chmod +x shadowsocks-all.sh
 ./shadowsocks-all.sh 2&gt;&amp;1 | tee shadowsocks-all.log`（参见（1）https://shadowsocks.be （2）https://teddysun.com/392.html）shadowsocks-plus为带kcptun（类似finalspeed双向加速软件）的shadowsocks go版本。
@@ -14343,6 +14358,35 @@ docker pull maven:last
  docker rm -v maven_data删除maven本地存储，-v表示与之相关的容器满足如下条件时，删除该卷：卷是由Docker管理的，没有其他容器引     用。（参数--rm表示run完删除，-v表示映射卷，--volumes-from从其他容器载入卷） -w container的工作目录(即当前执行的目录)需要注意的是如果是springboot之类需要开放端口的，需要加-p参数映射端口，因为所有操作其实都是在容器中的，而卷只不过是做了个文件的映射。
 ```</pre>
 </div>
+<div created="20180711012636889" creator="bk201" modified="20180711020144044" modifier="bk201" tags="IDEA docker" title="docker暴露远程接口供调用">
+<pre>以下操作均是在debian下进行
+!! 设置远程端口暴露
+```
+vim /etc/docker/daemon.json
+{
+  &quot;hosts&quot;: [&quot;tcp://0.0.0.0:10086&quot;],//暴露端口
+  &quot;registry-mirrors&quot;: [&quot;https://nio88j0t.mirror.aliyuncs.com&quot;]//[[加速镜像|https://cr.console.aliyun.com/?spm=5176.1972344.0.2.oIoEbp&amp;accounttraceid=28d8c8aa-1cb4-49bf-a688-6f8d69c3fd4c&amp;accounttraceid=4852af7a-6c5f-44d2-b0ea-6902470b79df#/accelerator]]
+}
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+//此时会出现https://github.com/moby/moby/issues/22339#issuecomment-251888223问题导致无法重启
+解决:
+vim /etc/systemd/system/docker.service.d/docker.conf
+[Service]
+ExecStart=
+ExecStart=/usr/bin/dockerd
+```
+!! 使用
+!!! idea
+```
+file setting  docker tcp sock
+```
+!!! maven plugin
+```
+DOCKER_HOST  = tcp://10.0.35.168:10086
+```
+</pre>
+</div>
 <div created="20151230052125879" creator="bk201sama" modified="20170214092701140" modifier="bk201" tags="docker" title="docker网站">
 <pre>http://www.docker.org.cn/book/
 
@@ -15035,6 +15079,9 @@ netsh interface ipv6 delete route ::/0 interface=14
 netsh interface ipv6 add route ::/0 interface=14
 然后查看状态正常了Qualified！
 ```</pre>
+</div>
+<div created="20180823025527078" creator="bk201" modified="20180823025610144" modifier="bk201" tags="" title="JasperReports+iReport打印为excel表头重复问题解决">
+<pre>移到  属性 框里面，找到Ignore pagination项，勾上，忽略分页</pre>
 </div>
 <div created="20170214083022591" creator="bk201" modified="20170214083449028" modifier="bk201" tags="程序员" title="java" type="text/vnd.tiddlywiki">
 <pre>!! 全部文章
