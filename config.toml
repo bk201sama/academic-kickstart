@@ -64,7 +64,7 @@ defaultContentLanguageInSubdir = true
   #office_hours = "Monday 10:00 to 13:00 or email for appointment"
   #phone = "888 888 88 88"
   #skype = "echo123"
-  telegram = "dirtyman110"
+  #telegram = ""
 
   # Enable Keybase in Contact widget by entering your keybase.io username.
   keybase = ""
